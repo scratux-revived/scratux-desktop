@@ -1,8 +1,11 @@
 {
-  "name": "scratch-desktop",
-  "productName": "Scratch",
-  "description": "Scratch 3.0 as a self-contained desktop application",
-  "author": "Scratch Foundation",
+  "name": "scratux-desktop",
+  "productName": "Scratux",
+  "description": "A free programming language where you can create your own interactive stories, games, and animations",
+  "author": {
+        "name": "Scratux Revived",
+        "url": "https://scratux-revived.github.io"
+  },
   "version": "3.29.1",
   "license": "BSD-3-Clause",
   "scripts": {
@@ -20,9 +23,49 @@
     "test": "npm run test:lint",
     "test:lint": "eslint --cache --color --ext .jsx,.js ."
   },
+  "build": {
+        "productName": "scratux",
+        "appId": "org.scratuxrevived.scratux",
+        "directories": {
+            "output": "./../build"
+        },
+        "dmg": {
+            "contents": [{
+                    "x": 410,
+                    "y": 150,
+                    "type": "link",
+                    "path": "/Applications"
+                },
+                {
+                    "x": 130,
+                    "y": 150,
+                    "type": "file"
+                }
+            ]
+        },
+        "linux": {
+            "icon": "./../icons",
+            "category": "Education",
+            "target": [
+                "AppImage",
+                {
+                    "target": "deb",
+                    "arch": [
+                        "x64"
+                    ]
+                },
+                "pacman",
+                "snap",
+                "rpm"
+            ]
+        },
+        "snap": {
+            "plugs": ["default", "camera", "audio-playback", "audio-record", "bluetooth-control"]
+        }
+  },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/LLK/scratch-desktop.git"
+    "url": "git+ssh://git@github.com/scratux-revived/scratux-desktop.git"
   },
   "dependencies": {
     "source-map-support": "^0.5.19"
@@ -63,7 +106,7 @@
     "react-redux": "5.0.7",
     "redux": "3.7.2",
     "rimraf": "^3.0.2",
-    "scratch-gui": "github:LLK/scratch-gui#scratch-desktop-v3.29.0",
+    "scratch-gui": "github:scratux-revived/scratux-gui",
     "uuid": "^8.0.0",
     "webpack": "^4.43.0"
   },
